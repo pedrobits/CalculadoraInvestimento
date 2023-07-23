@@ -58,4 +58,10 @@ Este projeto está licenciado sob a Licença MIT - consulte o arquivo [Licença]
 
 ## Aviso Legal
 
-Esta calculadora de investimentos é apenas para fins educacionais e de simulação. Os resultados obtidos não representam recomendações financeiras reais e precisam ser utilizados apenas como referência para fins informativos. Sempre consulte um profissional de investimentos qualificado antes de tomar decisões financeiras. O autor não se responsabiliza por quaisquer danos ou prejuízos decorrentes do uso desta calculadora.
+Esta calculadora de investimentos é um projeto de estudo com valores fictícios e tem o propósito exclusivo de fins educacionais e de simulação. Os resultados obtidos não devem ser considerados como recomendações financeiras reais e devem ser utilizados apenas como referência para fins informativos.
+
+É importante ressaltar que a calculadora não oferece aconselhamento financeiro e não substitui a consulta a um profissional de investimentos qualificado. Antes de tomar decisões financeiras reais, recomendamos que você busque orientação de um especialista na área para análise detalhada de suas circunstâncias pessoais e objetivos financeiros.
+
+O autor deste projeto não se responsabiliza por quaisquer danos ou prejuízos decorrentes do uso desta calculadora ou das informações fornecidas por ela. O usuário assume total responsabilidade por suas decisões financeiras e investimentos.
+
+Lembre-se sempre de que investimentos envolvem riscos, e é essencial realizar pesquisas e análises apropriadas antes de tomar qualquer decisão financeira.
