@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de Investimentos</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header><h1>Calculadora de Investimentos</h1></header>
+    <form id="investimentoForm">
+      <label for="taxa">Taxa de Rendimento :</label>
+      <input type="number" step="0.01" id="taxa" required /><br />
+
+      <label for="taxaPredefinida">Taxa de Rendimento Pré-definida:</label>
+      <select id="taxaPredefinida" onchange="atualizarTaxa()">
+        <option value="0">Selecione uma taxa</option>
+        <option value="12.25">Selic - 12,25% a.a.</option>
+        <option value="15.01">
+          Certificado de Depósito Bancário (CDB) - 15,01% a.a.
+        </option>
+        <option value="12.28">Tesouro Direto - 12,28% a.a.</option>
+        <option value="16.00">
+          Letra de Crédito Imobiliário (LCI) - 16,00% a.a.
+        </option>
+        <option value="16.00">
+          Letra de Crédito do Agronegócio (LCA) - 16,00% a.a.
+        </option>
+        <option value="13.65">
+          Certificado de Recebíveis Imobiliários (CRI) - 13,65% a.a.
+        </option>
+        <option value="6.17">Poupança - 6,17% a.a.</option>
+      </select>
+      <br />
+
+      <div id="descricaoInvestimento">
+        <!-- O conteúdo será atualizado aqui -->
+      </div>
+
+      <label for="meses">Número de Meses:</label>
+      <input type="number" id="meses" required /><br />
+
+      <label for="investimentoInicial">Investimento Inicial:</label>
+      <input type="number" id="investimentoInicial" required /><br />
+
+      <label for="aporteMensal">Aporte Mensal:</label>
+      <input type="number" id="aporteMensal" required /><br />
+
+      <button type="submit">Calcular</button>
+    </form>
+
+    <div id="resultado"></div>
+
+    <script>
+      document
+        .getElementById("investimentoForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          calcularInvestimento();
+        });
+
+      document
+        .getElementById("investimentoForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          calcularInvestimento();
+        });
+
+      function atualizarTaxa() {
+        const select = document.getElementById("taxaPredefinida");
+        const divDescricao = document.getElementById("descricaoInvestimento");
+
+        const taxaSelecionada = select.value;
+
+        switch (taxaSelecionada) {
+          case "15.01":
+            divDescricao.innerHTML =
+              "Certificado de Depósito Bancário (CDB): É um investimento de renda fixa oferecido por bancos, e a taxa de 15,01% a.a. pode estar atrelada a um prazo específico, como 1 ano, 2 anos, 5 anos, etc. Geralmente, quanto maior o prazo de investimento, maior tende a ser a taxa oferecida.";
+            break;
+          case "12.28":
+            divDescricao.innerHTML =
+              "Tesouro Direto: As taxas divulgadas para o Tesouro Direto são anuais e também podem variar de acordo com o título escolhido e o prazo de vencimento. Existem títulos com prazos mais curtos e outros com prazos mais longos.";
+            break;
+          case "16.00":
+            divDescricao.innerHTML =
+              "Letra de Crédito Imobiliário (LCI) e Letra de Crédito do Agronegócio (LCA): São investimentos de renda fixa emitidos por instituições financeiras com lastro em empréstimos imobiliários ou do agronegócio. As taxas também podem variar de acordo com o prazo de investimento.";
+            break;
+          case "13.65":
+            divDescricao.innerHTML =
+              "Certificado de Recebíveis Imobiliários (CRI): Assim como os demais, a taxa de 13,65% a.a. pode variar conforme o prazo de vencimento do título.";
+            break;
+          case "6.17":
+            divDescricao.innerHTML =
+              "Poupança: A poupança é uma modalidade de investimento bastante popular e com liquidez diária, ou seja, você pode resgatar o dinheiro a qualquer momento. A taxa de rendimento da poupança é definida pela regra antiga (antes de 2012) ou pela nova regra, que considera a taxa básica de juros (Selic) abaixo de 8,5% a.a. A taxa de 6,17% a.a. provavelmente está vinculada à nova regra de rendimento da poupança.";
+            break;
+          default:
+            divDescricao.innerHTML = "";
+            break;
+        }
+
+        // Atualiza também o valor da taxa no campo de entrada
+        document.getElementById("taxa").value = taxaSelecionada;
+      }
+
+      function calcularInvestimento() {
+        limparResultado();
+        const taxaAnual = parseFloat(document.getElementById("taxa").value);
+        const taxaMensal = Math.pow(1 + taxaAnual, 1 / 12) - 1;
+        const meses = parseInt(document.getElementById("meses").value);
+        const investimentoInicial = parseFloat(
+          document.getElementById("investimentoInicial").value
+        );
+        const aporteMensal = parseFloat(
+          document.getElementById("aporteMensal").value
+        );
+
+        if (
+          isNaN(taxaAnual) ||
+          isNaN(meses) ||
+          isNaN(investimentoInicial) ||
+          isNaN(aporteMensal)
+        ) {
+          alert("Por favor, preencha todos os campos corretamente.");
+          return;
+        }
+
+        let investimento = investimentoInicial;
+        const nomeMes = [
+          "Janeiro",
+          "Fevereiro",
+          "Março",
+          "Abril",
+          "Maio",
+          "Junho",
+          "Julho",
+          "Agosto",
+          "Setembro",
+          "Outubro",
+          "Novembro",
+          "Dezembro",
+        ];
+
+        const dataAtual = new Date();
+        let mesAtual = dataAtual.getMonth();
+
+        let resultadoHtml = "<h2>Resultados:</h2>";
+
+        for (let i = 0; i < meses; i++) {
+          const rendimento = investimento * taxaMensal;
+          investimento = investimento + aporteMensal + rendimento;
+          resultadoHtml += `<p>${
+            nomeMes[mesAtual % 12]
+          }: R$${investimento.toFixed(2)}</p>`;
+          mesAtual++;
+        }
+
+        function limparResultado() {
+          document.getElementById("resultado").innerHTML = "";
+        }
+
+        const total = investimento - investimentoInicial - aporteMensal * meses;
+        resultadoHtml += `<p>Seu lucro total é de: R$${total.toFixed(2)}</p>`;
+
+        document.getElementById("resultado").innerHTML = resultadoHtml;
+      }
+    </script>
+  </body>
+</html>
