@@ -1,6 +1,6 @@
 # Calculadora de Investimentos - CalcInv
 
-Uma calculadora de investimentos que permite calcular rendimentos mensais com base na taxa de rendimento pré-definida ou taxa de rendimento personalizada.
+Uma calculadora de investimentos que permite calcular rendimentos mensais com base na taxa de rendimento pré-definida ou taxa de rendimento personalizada (Dados utilizados são totalmente especulativos).
 
 ## Descrição
 
